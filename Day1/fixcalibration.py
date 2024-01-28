@@ -11,7 +11,7 @@ def read_file(): #function to read input and remove data that is not numeric
 
 def clean_digits(): #function to remove non numerical characters from input
     clean = [] #Initiates list to store numbers
-    for i in read_file(): #Iterates through input list
+    for i in convert_letters(): #Iterates through input list
         digits_only = ''.join(j for j in i if j.isdigit()) #replaces non digits with empty string
         if digits_only:
             clean.append((digits_only))
@@ -30,11 +30,27 @@ def sum_calibrations():
     total_sum=sum(recover_value())
     return total_sum
         
-        
+def convert_letters():
+    letter_key={'one': '1', 'two': '2', 'three': '3', 'four': '4', 'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'}
+    formatted=[]
+    for i in read_file():
+        new_string = i
+        for substring, replacement in letter_key.items():
+            if substring in new_string:
+                new_string = new_string.replace(substring, replacement)
+        formatted.append(new_string)
+    return formatted
 
 
-#if __name__ == "__main__":
-read_file()
-clean_digits()
-print(recover_value())
-print(sum_calibrations())
+if __name__ == "__main__":
+    read_file()
+    convert_letters()
+    clean_digits()
+    recover_value()
+    sum_calibrations()
+    #print(read_file())
+    #print(convert_letters())
+    print(clean_digits())
+    print(recover_value())
+    print(sum_calibrations())
+    
