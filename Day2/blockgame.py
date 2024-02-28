@@ -1,3 +1,6 @@
+#Code solves Advent Of Code 2023 Day 2 parts 1 and 2.
+# TODO: Code repeats itself and can be simplified further. DRY principle. 
+
 import re
 max_red=12 
 max_green=13
@@ -10,6 +13,8 @@ def file_to_list():
             stripped_list.append(line.strip())
     #print(stripped_list)
     return(stripped_list)
+
+
 
 def red():
     red_list=[]
@@ -73,6 +78,22 @@ def sum_games():
         total+=i
     print(total)
 
+def cube_power():
+    sum_power=0
+    for index, line in enumerate(file_to_list()):
+        get_red = re.findall("\d+\sred", line)
+        get_blue = re.findall("\d+\sblue", line)
+        get_green = re.findall("\d+\sgreen", line)
+        game_number=index+1
+        red_rounds=[int(item.split()[0]) for item in get_red]
+        blue_rounds=[int(item.split()[0]) for item in get_blue]
+        green_rounds=[int(item.split()[0]) for item in get_green]
+        power=max(red_rounds) * max(blue_rounds) * max(green_rounds)
+        sum_power+=power
+        print(game_number," : ", power)
+        print(sum_power)
+    return (sum_power)
+
         
 
         
@@ -83,6 +104,7 @@ if __name__ == "__main__":
     blue()
     possible_games()
     sum_games()
+    cube_power()
     
 
        
