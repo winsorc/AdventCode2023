@@ -27,8 +27,6 @@ def red():
         for i in possible_red:
             if i == "fail":
                 red_list.append(game_number)
-        print(game_number, possible_red)
-    print(red_list)
     return(red_list)
 
 def green():
@@ -42,8 +40,6 @@ def green():
         for i in possible_green:
             if i == "fail":
                 green_list.append(game_number)
-        print(game_number, possible_green)
-    print(green_list)
     return(green_list)
           
 def blue():
@@ -57,8 +53,6 @@ def blue():
         for i in possible_blue:
             if i == "fail":
                 blue_list.append(game_number)
-            print(game_number, possible_blue)
-    print(blue_list)
     return(blue_list)
 
 def possible_games():
@@ -69,7 +63,6 @@ def possible_games():
         games.append(game_number)
     games_possible=[i for i in games if i not in red() and i not in blue() and i not in green()]
     games_possible = list(set(games_possible))
-    print(games_possible)
     return games_possible
 
 def sum_games():
@@ -77,6 +70,7 @@ def sum_games():
     for i in possible_games():
         total+=i
     print(total)
+    return(total)
 
 def cube_power():
     sum_power=0
@@ -90,19 +84,14 @@ def cube_power():
         green_rounds=[int(item.split()[0]) for item in get_green]
         power=max(red_rounds) * max(blue_rounds) * max(green_rounds)
         sum_power+=power
-        print(game_number," : ", power)
-        print(sum_power)
+    print(sum_power)
     return (sum_power)
 
         
 
         
 if __name__ == "__main__":
-    #file_to_list()
-    red()
-    green()
-    blue()
-    possible_games()
+    
     sum_games()
     cube_power()
     
